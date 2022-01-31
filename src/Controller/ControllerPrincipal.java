@@ -99,7 +99,6 @@ public class ControllerPrincipal {
 
     public void loadFile() {
         File file = this.selectFile();
-
         if (file != null) {
             this.loadConfigPuzzle(file);
         }
@@ -144,7 +143,7 @@ public class ControllerPrincipal {
 
                 String[] valoresLinha = linha.split(", ");
 
-                int numeroColunas = valoresLinha.length + 2;
+                int numeroColunas = valoresLinha.length;
 
                 for(int j = 0; j < numeroColunas; j++) {
                     ImageIcon imagemBola = this.getImagemBola(valoresLinha[j]);
