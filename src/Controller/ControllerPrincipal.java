@@ -144,7 +144,9 @@ public class ControllerPrincipal {
 
                 String[] valoresLinha = linha.split(", ");
 
-                for(int j = 0; j < valoresLinha.length; j++) {
+                int numeroColunas = valoresLinha.length + 2;
+
+                for(int j = 0; j < numeroColunas; j++) {
                     ImageIcon imagemBola = this.getImagemBola(valoresLinha[j]);
 
                     view.getTableTubosEnsaio().getColumnModel().getColumn(j).setCellRenderer(render);
