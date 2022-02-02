@@ -48,7 +48,7 @@ public class ViewSobre extends javax.swing.JFrame {
         nomeDaniel.setText("Daniel Valdo Dallabeneta");
 
         emailDaniel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        emailDaniel.setText("daniel@daniel.com");
+        emailDaniel.setText("danielvaldo@hotmail.com");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,20 +58,18 @@ public class ViewSobre extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(143, 143, 143)
-                                    .addComponent(emailWalter))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(147, 147, 147)
-                                    .addComponent(labelTituloDesenvolvimento)))
-                            .addGap(36, 36, 36))
+                            .addGap(147, 147, 147)
+                            .addComponent(labelTituloDesenvolvimento)
+                            .addGap(38, 38, 38))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nomeWalter)
-                            .addComponent(nomeDaniel)))
+                            .addComponent(nomeDaniel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(emailDaniel))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(emailDaniel)))
+                        .addGap(136, 136, 136)
+                        .addComponent(emailWalter)))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

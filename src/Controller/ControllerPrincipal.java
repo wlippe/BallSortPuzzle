@@ -1,14 +1,15 @@
 package Controller;
 
 import java.io.File;
+import javax.swing.JTable;
+import javax.swing.JLabel;
 import View.ViewPrincipal;
 import java.io.FileReader;
-import javax.swing.JLabel;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import java.io.BufferedReader;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
 import java.io.FileNotFoundException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,78 +23,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ControllerPrincipal {
 
     private ViewPrincipal view;
-    private ImageIcon bolaVermelha;
-    private ImageIcon bolaAmarela;
-    private ImageIcon bolaAzul;
-    private ImageIcon bolaAzulBebe;
-    private ImageIcon bolaVerde;
-    private ImageIcon bolaVerdeClaro;
-    private ImageIcon bolaLaranja;
-    private ImageIcon bolaRoxa;
-    private ImageIcon bolaRoxoForte;
-    private ImageIcon bolaRosa;
-    private ImageIcon bolaVinho;
-    private ImageIcon bolaCinza;
 
     public ControllerPrincipal(ViewPrincipal view) {
         this.view = view;
-        this.loadImageIcons();
     }
 
-    private void loadImageIcons() {
-        this.bolaVermelha   = new ImageIcon(getClass().getResource("/View/imagens/vermelho.png"));
-        this.bolaAmarela    = new ImageIcon(getClass().getResource("/View/imagens/amarelo.png"));
-        this.bolaAzul       = new ImageIcon(getClass().getResource("/View/imagens/azul.png"));
-        this.bolaAzulBebe   = new ImageIcon(getClass().getResource("/View/imagens/azul_bebe.png"));
-        this.bolaVerde      = new ImageIcon(getClass().getResource("/View/imagens/verde.png"));
-        this.bolaVerdeClaro = new ImageIcon(getClass().getResource("/View/imagens/verde_claro.png"));
-        this.bolaLaranja    = new ImageIcon(getClass().getResource("/View/imagens/laranja.png"));
-        this.bolaRoxa       = new ImageIcon(getClass().getResource("/View/imagens/roxo.png"));
-        this.bolaRoxoForte  = new ImageIcon(getClass().getResource("/View/imagens/roxo_forte.png"));
-        this.bolaRosa       = new ImageIcon(getClass().getResource("/View/imagens/rosa.png"));
-        this.bolaVinho      = new ImageIcon(getClass().getResource("/View/imagens/vinho.png"));
-        this.bolaCinza      = new ImageIcon(getClass().getResource("/View/imagens/cinza.png"));
-    }
-
-    public void renderTableTubosEnsaioVazios() {
-        view.getTableTubosEnsaio().setBackground(new java.awt.Color(255, 255, 255));
-        view.getTableTubosEnsaio().setColumnSelectionAllowed(false);
-        view.getTableTubosEnsaio().setRequestFocusEnabled(false);
-        view.getTableTubosEnsaio().setRowSelectionAllowed(false);
-        view.getTableTubosEnsaio().getTableHeader().setUI(null);
-        view.getTableTubosEnsaio().setDragEnabled(false);
-        view.getTableTubosEnsaio().setAutoscrolls(false);
-        view.getTableTubosEnsaio().setRowHeight(62);
-    }
-
-    private ImageIcon getImagemBola(String nome) {
+    public ImageIcon getImagemBola(String nome) {
         switch (nome) {
-            case "vermelho":
-                return bolaVermelha;
-            case "amarelo":
-                return bolaAmarela;
-            case "azul":
-                return bolaAzul;
-            case "azul_bebe":
-                return bolaAzulBebe;
-            case "verde":
-                return bolaVerde;
-            case "verde_claro":
-                return bolaVerdeClaro;
-            case "laranja":
-                return bolaLaranja;
-            case "roxo":
-                return bolaRoxa;
-            case "roxo_forte":
-                return bolaRoxoForte;
-            case "rosa":
-                return bolaRosa;
-            case "vinho":
-                return bolaVinho;
-            case "cinza":
-                return bolaCinza;
-            default:
-                return null;
+            case "vermelho"   : return new ImageIcon(getClass().getResource("/View/imagens/vermelho.png"));
+            case "amarelo"    : return new ImageIcon(getClass().getResource("/View/imagens/amarelo.png"));
+            case "azul"       : return new ImageIcon(getClass().getResource("/View/imagens/azul.png"));
+            case "azul_bebe"  : return new ImageIcon(getClass().getResource("/View/imagens/azul_bebe.png"));
+            case "verde"      : return new ImageIcon(getClass().getResource("/View/imagens/verde.png"));
+            case "verde_claro": return new ImageIcon(getClass().getResource("/View/imagens/verde_claro.png"));
+            case "laranja"    : return new ImageIcon(getClass().getResource("/View/imagens/laranja.png"));
+            case "roxo"       : return new ImageIcon(getClass().getResource("/View/imagens/roxo.png"));
+            case "roxo_forte" : return new ImageIcon(getClass().getResource("/View/imagens/roxo_forte.png"));
+            case "rosa"       : return new ImageIcon(getClass().getResource("/View/imagens/rosa.png"));
+            case "vinho"      : return new ImageIcon(getClass().getResource("/View/imagens/vinho.png"));
+            case "cinza"      : return new ImageIcon(getClass().getResource("/View/imagens/cinza.png"));
+            default           : return null;
         }
     }
 
@@ -125,34 +74,42 @@ public class ControllerPrincipal {
 
     public void loadConfigPuzzle(File file) {
         File arq = file;
-
+        int numeroColunas = 0;
         try {
-            this.renderTableTubosEnsaioVazios();
+            this.setTableConfigDefault();
+            this.resetTabela();
 
-            ControllerCellRender render = new ControllerCellRender();
-
-            render.setHorizontalAlignment(JLabel.CENTER);
-            
-            DefaultTableModel modelo = (DefaultTableModel) view.getTableTubosEnsaio().getModel();
+            DefaultTableModel tabela = (DefaultTableModel) view.getTableTubosEnsaio().getModel();
 
             FileReader     leitorArq   = new FileReader(arq);
             BufferedReader leitorTexto = new BufferedReader(leitorArq);
 
             for(int i = 0; i < 4; i++) {
-                String linha = leitorTexto.readLine();
+                String linha = leitorTexto.readLine(); 
 
                 String[] valoresLinha = linha.split(", ");
 
-                int numeroColunas = valoresLinha.length;
+                numeroColunas = valoresLinha.length + 2;
 
-                for(int j = 0; j < numeroColunas; j++) {
+                Object oLinha[] = new Object[numeroColunas];
+
+                for(int j = 0; j < valoresLinha.length; j++) {
+                    if(i==0) {
+                        tabela.addColumn("");
+                    }
                     ImageIcon imagemBola = this.getImagemBola(valoresLinha[j]);
-
-                    view.getTableTubosEnsaio().getColumnModel().getColumn(j).setCellRenderer(render);
-
-                    modelo.setValueAt(imagemBola, i, j);
+                    oLinha[j] = imagemBola;
                 }
+                oLinha[valoresLinha.length]   = null;
+                oLinha[valoresLinha.length+1] = null;
+
+                tabela.addRow(oLinha);
             }
+
+            tabela.addColumn("");
+            tabela.addColumn("");
+
+            this.renderColumns(numeroColunas-2);
         }
         catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Arquivo nao encontrado");
@@ -161,4 +118,42 @@ public class ControllerPrincipal {
             JOptionPane.showMessageDialog(null, "Erro ao ler o arquivo");
         }
     }
+
+    private void setTableConfigDefault() {
+        JTable tabelaTuboEnsaio = view.getTableTubosEnsaio();
+        tabelaTuboEnsaio.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaTuboEnsaio.setColumnSelectionAllowed(false);
+        tabelaTuboEnsaio.setRequestFocusEnabled(false);
+        tabelaTuboEnsaio.setRowSelectionAllowed(false);
+        tabelaTuboEnsaio.getTableHeader().setUI(null);
+        tabelaTuboEnsaio.setDragEnabled(false);
+        tabelaTuboEnsaio.setAutoscrolls(false);
+        tabelaTuboEnsaio.setRowHeight(62);
+    }
+
+    /* Remove as linhas e colunas da tabela */
+    private void resetTabela() {
+        DefaultTableModel tabela = (DefaultTableModel) view.getTableTubosEnsaio().getModel();
+        tabela.setColumnCount(0);
+        while(tabela.getRowCount() > 0){
+            tabela.removeRow(0);
+        }
+    }
+
+    /* Renderiza as imagens nas colunas utilizando o Controlador */
+    private void renderColumns(int numeroColunas) {
+        ControllerCellRender render = new ControllerCellRender();
+        render.setHorizontalAlignment(JLabel.CENTER);
+        for(int i = 0; i < numeroColunas; i++) {
+            view.getTableTubosEnsaio().getColumnModel().getColumn(i).setCellRenderer(render);
+        }
+    }
+
+    /* @todo Ajustar*/
+    public void setValor(Object aValue, int row, int column) {
+        DefaultTableModel tabela = (DefaultTableModel) view.getTableTubosEnsaio().getModel();
+        tabela.setValueAt(aValue, row, column);
+        this.renderColumns(tabela.getColumnCount());
+    }
+
 }

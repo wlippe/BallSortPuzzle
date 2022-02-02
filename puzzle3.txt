@@ -1,0 +1,4 @@
+amarelo, laranja, cinza, verde_claro, azul_bebe, verde, roxo, vermelho, roxo
+vinho, vermelho, rosa, amarelo, roxo, vinho, azul, verde, amarelo
+roxo_forte, azul_bebe, cinza, laranja, rosa, azul_bebe, roxo_forte, vermelho, verde_claro
+laranja, rosa, vinho, roxo_forte, laranja, amarelo, verde_claro, cinza, azul

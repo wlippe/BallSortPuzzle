@@ -21,8 +21,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/View/imagens/icon.png"));
         setIconImage(icon.getImage());
 
-        controller = new ControllerPrincipal(this);
-        controller.renderTableTubosEnsaioVazios();
+        this.controller = new ControllerPrincipal(this);
     }
 
     /**
@@ -68,50 +67,18 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 btn_sobreMouseClicked(evt);
             }
         });
-        btn_sobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_sobreActionPerformed(evt);
-            }
-        });
 
         tableTubosEnsaio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "", "", "", "", "", "", "", "", "", "", "", "", "", ""
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         tableTubosEnsaio.setFocusable(false);
         tableTubosEnsaio.setShowGrid(true);
         jScrollPane1.setViewportView(tableTubosEnsaio);
-        if (tableTubosEnsaio.getColumnModel().getColumnCount() > 0) {
-            tableTubosEnsaio.getColumnModel().getColumn(0).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(1).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(2).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(3).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(4).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(5).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(6).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(7).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(8).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(9).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(10).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(11).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(12).setResizable(false);
-            tableTubosEnsaio.getColumnModel().getColumn(13).setResizable(false);
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,12 +121,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_carregarActionPerformed
 
     private void btn_larguraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_larguraActionPerformed
-        // TODO add your handling code here:
+        this.teste();
     }//GEN-LAST:event_btn_larguraActionPerformed
-
-    private void btn_sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sobreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_sobreActionPerformed
 
     private void btn_sobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sobreMouseClicked
         this.abreJanelaSobre();
@@ -217,4 +180,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         return tableTubosEnsaio;
     }
 
+    public void teste() {
+        controller.setValor(controller.getImagemBola("roxo"), 1, 13);
+    }
 }

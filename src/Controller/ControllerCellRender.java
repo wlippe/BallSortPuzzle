@@ -4,8 +4,10 @@ import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
- *
- * @author wlipp
+ * Controlador de Renderização das Celulas da Tabela
+ * @package Controller
+ * @author Walter Felipe Bachmann
+ * @since Dezembro/2021
  */
 public class ControllerCellRender extends DefaultTableCellRenderer {
 
@@ -17,12 +19,12 @@ public class ControllerCellRender extends DefaultTableCellRenderer {
             if (value != null) {
                 ImageIcon imagem = (ImageIcon) value;
                 setIcon(imagem);
-            } 
+            }
             else {
                 setText("");
                 setIcon(null);
             }
-        } 
+        }
         else {
             super.setValue(value);
         }
