@@ -8,6 +8,7 @@
       <Dimension value="[400, 300]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="viewSobre" noResource="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

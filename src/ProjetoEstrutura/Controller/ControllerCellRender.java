@@ -1,4 +1,4 @@
-package Controller;
+package ProjetoEstrutura.Controller;
 
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableCellRenderer;

@@ -1,6 +1,7 @@
-package View;
+package ProjetoEstrutura.View;
 
-import javax.swing.ImageIcon;
+import javax.swing.JTable;
+
 
 /**
  * Tela de informações do projeto Ball Sort Puzzle 
@@ -9,14 +10,11 @@ import javax.swing.ImageIcon;
  * @author Walter Felipe Bachmann
  * @since Dezembro/2021
  */
-public class ViewSobre extends javax.swing.JFrame {
+public class ViewSobre extends ViewPadrao {
 
     public ViewSobre() {
         initComponents();
-        this.setLocationRelativeTo(null);
-
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/View/imagens/icon.png"));
-        setIconImage(icon.getImage());
+        initComponentsPadrao();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +31,7 @@ public class ViewSobre extends javax.swing.JFrame {
         setTitle("Sobre");
         setMinimumSize(new java.awt.Dimension(400, 300));
         setName("viewSobre"); // NOI18N
+        setResizable(false);
 
         labelTituloDesenvolvimento.setText("Desenvolvimento");
 
@@ -92,11 +91,6 @@ public class ViewSobre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -113,9 +107,6 @@ public class ViewSobre extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ViewSobre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewSobre().setVisible(true);
@@ -130,4 +121,9 @@ public class ViewSobre extends javax.swing.JFrame {
     private javax.swing.JLabel nomeDaniel;
     private javax.swing.JLabel nomeWalter;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JTable getTableTubosEnsaio() {
+        return null;
+    }
 }
